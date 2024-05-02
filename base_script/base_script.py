@@ -1,15 +1,18 @@
 from appium import webdriver
+from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
+from os import path
 
 desired_capabilities = {
     'platformName': 'Android',
     'deviceName': 'your_device_name',
-    'appPackage': 'com.openai.chatgpt',
-    'appActivity': 'com.openai.chatgpt.MainActivity',  # Assuming this is the main activity
-    'automationName': 'UiAutomator2'  # Use UiAutomator2 for better compatibility
+    'appPackage': 'ai.chat.gpt.bot',
+    'appActivity': 'com.aiby.chat.MainActivity',  # Assuming this is the main activity
+    'automationName': 'UiAutomator2',  # Use UiAutomator2 for better compatibility
+    'app': path.abspath('../ChatOn - AI Chat Bot Assistant_1.39.374-396_apkcombo.com.apk')
 }
 
-driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities)
+driver = webdriver.Remote('http://localhost:4723', options=UiAutomator2Options().load_capabilities(desired_capabilities))
 
 # Start the app and go to the gallery
 # Update these XPaths and IDs based on the actual UI elements in your app
