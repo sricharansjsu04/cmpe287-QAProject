@@ -13,15 +13,15 @@ def initialize_output(output_dir, output_file):
     if os.path.exists(full_path):
         os.remove(full_path)
 
-    # Create a new Excel writer
-    writer = pd.ExcelWriter(full_path, engine='xlsxwriter')
-    return writer
+    # Return full path to be used with context manager later
+    return full_path
 
 
-def save_response(writer, responses):
-    df = pd.DataFrame(responses, columns=['Question', 'Response'])
-    df.to_excel(writer, index=False, sheet_name='Results')
-    writer.save()
+def save_response(full_path, responses):
+    # Using the context manager to handle the Excel file
+    with pd.ExcelWriter(full_path, engine='xlsxwriter') as writer:
+        df = pd.DataFrame(responses, columns=['Response'])  # Only store responses
+        df.to_excel(writer, index=False, sheet_name='Results')
 
 
 def finalize_output(writer):
