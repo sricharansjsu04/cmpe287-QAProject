@@ -22,14 +22,16 @@ def run_automation(test_data_path, output_dir, output_file):
         # Process each question in the current batch
         for question in questions[i:i + 5]:
             send_question(driver, question)
-            print(get_response(driver))
+            response = get_response(driver)
+            responses.append({'Response': response})
+            print(response)
             navigate_back(driver)
 
         close_driver(driver)
 
     # close_driver(driver)
     save_response(writer, responses)  # Save all responses to the Excel file
-    finalize_output(writer)
+    # finalize_output(writer)
 def navigate_back(driver):
     # el2 = driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR,
     #                           value="new UiSelector().className(\"android.view.View\").instance(6)")
