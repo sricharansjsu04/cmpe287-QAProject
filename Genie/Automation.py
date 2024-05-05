@@ -47,7 +47,7 @@ def run_automation(test_data_path, output_dir, output_file) -> int:
                     send_question(driver, question['input'])
                     rate_available -= 1
                     response = get_response(driver)
-                responses.append({'Index': question.name, 'subkey': question['subkey'], 'Response': response})
+                responses.append({'Index': question.name, 'subkey': question['subkey'], 'Response': response, 'expout': question['expoutput]})
                 print(response)
                 navigate_back(driver)
                 completed = True
