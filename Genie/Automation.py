@@ -10,7 +10,7 @@ from OutputGenerator import initialize_output, save_response, finalize_output
 import time
 
 
-def run_automation(test_data_path, output_dir, output_file):
+def run_automation(test_data_path, output_dir, output_file) -> int:
     driver = None
     questions = read_questions(test_data_path)
     responses = []
@@ -74,6 +74,7 @@ def run_automation(test_data_path, output_dir, output_file):
     print("Done. Saved responses to " + output_file)
     print("Total cases: " + str(len(questions)))
     print("Exceptions: " + str(exceptions))
+    return exceptions
 
 def navigate_back(driver: WebDriver):
     # el2 = driver.find_element(by=AppiumBy.ANDROID_UIAUTOMATOR,
