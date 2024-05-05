@@ -16,5 +16,5 @@ def get_driver():
     driver = webdriver.Remote('http://localhost:4723', options=UiAutomator2Options().load_capabilities(desired_capabilities))
     return driver
 
-def close_driver(driver):
+def close_driver(driver : webdriver.webdriver.WebDriver):
     driver.quit()
