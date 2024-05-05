@@ -1,4 +1,4 @@
-# Testing Transportation Queries in Using ChatGPT 
+# Testing Transportation Queries Using ChatGPT 
 
 ## Chosen APPS: 
 1. ChatOn: https://apkcombo.com/chaton-ai-chat-bot-assistant/ai.chat.gpt.bot/
@@ -9,3 +9,8 @@
 <code>chmod +x run_all.sh
   ./run_all.sh
 </code>
+
+<ul>
+  <li> output.log generated will have logs </li>
+  <li> Artifacts like output xslx sheets, reports will be in output folder that will be generated on succesful build </li>
+</ul>
