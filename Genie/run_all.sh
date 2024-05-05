@@ -26,7 +26,8 @@ print_completion "main.py"
 
 # Run my_nlp_script.py and log output
 print_header "my_nlp_script.py"
-python3 my_nlp_script.py >> $LOG_FILE 2>&1
+#can use my_nlp_script.py as well
+python3 regex_parser.py >> $LOG_FILE 2>&1
 print_completion "my_nlp_script.py"
 
 # Run ReportGenerator.py and log output
