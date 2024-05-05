@@ -8,6 +8,7 @@ from Driver import get_driver, close_driver
 from ParseMaster import read_questions
 from OutputGenerator import initialize_output, save_response, finalize_output
 import time
+from datetime import datetime
 
 
 def run_automation(test_data_path, output_dir, output_file) -> int:
@@ -18,6 +19,8 @@ def run_automation(test_data_path, output_dir, output_file) -> int:
     writer = initialize_output(output_dir, output_file)  # Initialize output file
     rate_available = 0 # how many questions we can still ask; if not enough is available, we force a reset
     exceptions = 0 # track number of exceptions that forced a driver reset
+    start_time = datetime.now()
+    print("Starting automation at " + str(start_time) + "...")
     for i in range(0, len(questions)):
         question = questions.iloc[i]
         print(question)
@@ -65,14 +68,24 @@ def run_automation(test_data_path, output_dir, output_file) -> int:
                 if attempts_left == 0:
                     save_response(writer, responses)  # Save all responses to the Excel file
                     print("Failed to reset driver. Exiting.")
-                    print("Total cases: " + str(len(questions)))
+                    end_time = datetime.now()
+                    diff = end_time - start_time
+                    avg = diff / len(responses)
+                    print("Automation ended at " + str(end_time) + " after " + str(diff) + " seconds.")
+                    print("Average time per case (seconds): " + str(avg))
+                    print("Total cases: " + str(len(responses)))
                     print("Exceptions: " + str(exceptions))
                     exit(1)
     if driver: close_driver(driver)
     save_response(writer, responses)  # Save all responses to the Excel file
     # finalize_output(writer)
     print("Done. Saved responses to " + output_file)
-    print("Total cases: " + str(len(questions)))
+    end_time = datetime.now()
+    diff = end_time - start_time
+    avg = diff / len(responses)
+    print("Automation ended at " + str(end_time) + " after " + str(diff) + " seconds.")
+    print("Average time per case (seconds): " + str(avg))
+    print("Total cases: " + str(len(responses)))
     print("Exceptions: " + str(exceptions))
     return exceptions
 
