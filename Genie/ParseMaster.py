@@ -6,4 +6,4 @@ def read_questions(file_path: str):
     filtered = df[['subkey', 'input', 'contextDict', 'expoutput']]
     filtered.loc[:, 'contextDict'] = filtered.loc[:, 'contextDict'].apply(lambda x: json.loads(x.replace("'", "\"")))
     filtered.loc[:, 'expoutput'] = filtered.loc[:, 'expoutput'].apply(lambda x: json.loads(x.replace("'", "\"")))
-    return filtered.head(10)
+    return filtered
