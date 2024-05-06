@@ -11,7 +11,7 @@ import time
 from datetime import datetime
 
 
-def run_automation(test_data_path, output_dir, output_file) -> int:
+def run_genie_automation(test_data_path, output_dir, output_file) -> int:
     driver = None
     questions = read_questions(test_data_path)
     responses = []
@@ -32,7 +32,7 @@ def run_automation(test_data_path, output_dir, output_file) -> int:
                     if rate_available < 2:
                         # Get a new driver instance and initialize rates
                         if driver: close_driver(driver)
-                        driver = get_driver()
+                        driver = get_driver(0)
                         setting_up(driver)
                         rate_available = 5
                     send_question_ongoing(driver, question['input'])
@@ -42,7 +42,7 @@ def run_automation(test_data_path, output_dir, output_file) -> int:
                     if rate_available < 1:
                         # Get a new driver instance and initialize rates
                         if driver: close_driver(driver)
-                        driver = get_driver()
+                        driver = get_driver(0)
                         setting_up(driver)
                         rate_available = 5
                     send_question(driver, question['input'])
@@ -63,7 +63,7 @@ def run_automation(test_data_path, output_dir, output_file) -> int:
                     try:
                         print(e)
                         if driver: close_driver(driver)
-                        driver = get_driver()
+                        driver = get_driver(0)
                         setting_up(driver)
                         rate_available = 5
                         break
