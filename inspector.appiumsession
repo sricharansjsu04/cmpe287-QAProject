@@ -10,16 +10,6 @@
       "type": "text",
       "name": "appium:automationName",
       "value": "UiAutomator2"
-    },
-    {
-      "type": "text",
-      "name": "appium:appPackage",
-      "value": "ai.chat.gpt.bot"
-    },
-    {
-      "type": "text",
-      "name": "appium:appActivity",
-      "value": "com.aiby.chat.MainActivity"
     }
   ],
   "server": {

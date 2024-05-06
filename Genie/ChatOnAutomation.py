@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 
 
-def run_chatOn_automation(test_data_path, output_dir, output_file) -> int:
+def run_chatOn_automation(test_data_path: str, output_dir: str, output_file: str, app_package: str, app_path: str) -> int:
     driver = None
     questions = read_questions(test_data_path)
     responses = []
@@ -33,7 +33,7 @@ def run_chatOn_automation(test_data_path, output_dir, output_file) -> int:
                 #     setting_up_chatOn(driver)
                 # else:
                 if driver: close_driver(driver)
-                driver = get_driver(1)
+                driver = get_driver(app_package, app_path)
                 setting_up_chatOn(driver)
                 send_chatOn_question(driver, question['input'])
             except Exception as e:
