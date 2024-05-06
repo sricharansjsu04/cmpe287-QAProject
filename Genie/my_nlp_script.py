@@ -20,7 +20,7 @@ category_keywords = {
 
 
 def categorize_transportation(response):
-    tokens = word_tokenize(response.lower())
+    tokens = word_tokenize(str(response).lower())
     found_categories = []
 
     # Match tokens to categories

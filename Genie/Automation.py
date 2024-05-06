@@ -28,7 +28,7 @@ def run_automation(test_data_path, output_dir, output_file) -> int:
         while not completed:
             try:
                 if question['contextDict']['State'] == 'Ongoing': # run cases depending on
-                    if (rate_available < 2):
+                    if rate_available < 2:
                         # Get a new driver instance and initialize rates
                         if driver: close_driver(driver)
                         driver = get_driver()
@@ -38,7 +38,7 @@ def run_automation(test_data_path, output_dir, output_file) -> int:
                     rate_available -= 2
                     response = get_response_ongoing(driver)
                 else:
-                    if (rate_available < 1):
+                    if rate_available < 1:
                         # Get a new driver instance and initialize rates
                         if driver: close_driver(driver)
                         driver = get_driver()
@@ -47,7 +47,7 @@ def run_automation(test_data_path, output_dir, output_file) -> int:
                     send_question(driver, question['input'])
                     rate_available -= 1
                     response = get_response(driver)
-                responses.append({'Index': question.name, 'subkey': question['subkey'], 'Response': response, 'expout': question['expoutput']})
+                responses.append({'Index': question.name, 'subkey': question['subkey'], 'expout': question['expoutput'], 'Response': response})
                 print(response)
                 navigate_back(driver)
                 completed = True
@@ -136,12 +136,12 @@ def send_question(driver: WebDriver, question: str):
     el9 = driver.find_element(by=AppiumBy.XPATH,
                               value="//android.widget.FrameLayout/android.widget.LinearLayout//android.widget.ImageView[@index='2']")
     captured_text = el9.get_attribute("content-desc")
-    if (not captured_text):  # try again after 3 seconds if value is null
+    if not captured_text or captured_text == None:  # try again after 3 seconds if value is null
         time.sleep(3)
         el9 = driver.find_element(by=AppiumBy.XPATH,
                                   value="//android.widget.FrameLayout/android.widget.LinearLayout//android.widget.ImageView[@index='2']")
         captured_text = el9.get_attribute("content-desc")
-        if (not captured_text):  # try again after 5 seconds if value is null
+        if not captured_text or captured_text == None:  # try again after 5 seconds if value is null
             time.sleep(5)
             el9 = driver.find_element(by=AppiumBy.XPATH,
                                       value="//android.widget.FrameLayout/android.widget.LinearLayout//android.widget.ImageView[@index='2']")
@@ -193,12 +193,12 @@ def send_question_ongoing(driver: WebDriver, question: str):
     el9 = driver.find_element(by=AppiumBy.XPATH,
                               value="//android.widget.FrameLayout/android.widget.LinearLayout//android.widget.ImageView[@index='0']")
     captured_text = el9.get_attribute("content-desc")
-    if (not captured_text):  # try again after 3 seconds if value is null
+    if not captured_text or captured_text == None:  # try again after 3 seconds if value is null
         time.sleep(3)
         el9 = driver.find_element(by=AppiumBy.XPATH,
                                   value="//android.widget.FrameLayout/android.widget.LinearLayout//android.widget.ImageView[@index='0']")
         captured_text = el9.get_attribute("content-desc")
-        if (not captured_text):  # try again after 5 seconds if value is null
+        if not captured_text or captured_text == None:  # try again after 5 seconds if value is null
             time.sleep(5)
             el9 = driver.find_element(by=AppiumBy.XPATH,
                                       value="//android.widget.FrameLayout/android.widget.LinearLayout//android.widget.ImageView[@index='0']")
@@ -219,6 +219,6 @@ def get_response(driver: WebDriver):
 def get_response_ongoing(driver: WebDriver):
     # response = driver.find_element(by=AppiumBy.XPATH,value="//android.widget.FrameLayout//android.widget.TextView").text
     el9 = driver.find_element(by=AppiumBy.XPATH,
-                              value="//android.widget.ScrollView//android.widget.ImageView[@index='0']")
+                              value="//android.widget.FrameLayout/android.widget.LinearLayout//android.widget.ImageView[@index='0']")
     captured_text = el9.get_attribute("content-desc")
     return captured_text
