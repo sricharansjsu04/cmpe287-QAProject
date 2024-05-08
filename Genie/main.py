@@ -4,7 +4,7 @@ from ChatOnAutomation import run_chatOn_automation
 
 if __name__ == '__main__':
     # Paths
-    test_data_path = 'Input/Deliverable2B-testcases-for-testing.xlsx'
+    test_data_path = 'Input/final_complete_sampled_data.xlsx'
     output_dir = './output'
     output_file = 'test_output.xlsx'
     app_package = 'co.appnation.geniechat'

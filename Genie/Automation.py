@@ -29,7 +29,7 @@ def run_automation(test_data_path: str, output_dir: str, output_file: str, app_p
         null_count = 0
         while not completed:
             try:
-                if question['contextDict']['State'] == 'Ongoing': # run cases depending on
+                if 'State' in question['contextDict'] and question['contextDict']['State'] == 'Ongoing': # run cases depending on
                     if rate_available < 2:
                         # Get a new driver instance and initialize rates
                         if driver: close_driver(driver)
