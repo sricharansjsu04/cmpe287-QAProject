@@ -38,7 +38,7 @@ def categorize_transportation(response):
         keyword_match = '1'
     category_match = next(iter(found_categories), 'N/A')
 
-    return {'Keyword match': keyword_match, 'Category match': category_match}
+    return {'Keyword Match': keyword_match, 'Category Match': category_match}
 
 def process_responses(file_path):
     df = pd.read_excel(file_path)

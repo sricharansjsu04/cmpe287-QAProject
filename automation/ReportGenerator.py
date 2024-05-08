@@ -15,7 +15,7 @@ def safe_json_loads(s):
 def compare_dicts(d1, d2):
     if d1 == d2:
         return 'pass'
-    elif d1.get('Keyword match') == d2.get('Keyword match') or d1.get('Category match') == d2.get('Category match'):
+    elif d1.get('Keyword Match') == d2.get('Keyword Match') or d1.get('Category Match') == d2.get('Category Match'):
         return 'partial'
     else:
         return 'fail'
