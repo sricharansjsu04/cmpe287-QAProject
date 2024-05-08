@@ -20,7 +20,7 @@ def initialize_output(output_dir, output_file):
 def save_response(full_path, responses):
     # Using the context manager to handle the Excel file
     with pd.ExcelWriter(full_path, engine='xlsxwriter') as writer:
-        df = pd.DataFrame(responses, columns=['Index', 'subkey', 'expout', 'Response'])  # Only store responses
+        df = pd.DataFrame(responses, columns=['Index', 'subkey', 'Response', 'expout'])  # Only store responses
         df.to_excel(writer, index=False, sheet_name='Results')
 
 

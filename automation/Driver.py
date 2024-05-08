@@ -2,17 +2,16 @@ from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from os import path
 
-def get_driver(app_package: str, app_path: str):
-
+def get_driver():
     desired_capabilities = {
         'platformName': 'Android',
         'deviceName': 'Nexus_S',
-        'appPackage': app_package,
+        'appPackage': 'co.appnation.geniechat',
         'automationName': 'UiAutomator2',
         'newCommandTimeout': 3600,
         'ensureWebviewsHavePages': True,
         'connectHardwareKeyboard': True,
-        'app': path.abspath(app_path)
+        'app': path.abspath('ai-chat-and-chatbot-genie-6-1-1.apk')
     }
     driver = webdriver.Remote('http://localhost:4723', options=UiAutomator2Options().load_capabilities(desired_capabilities))
     return driver
