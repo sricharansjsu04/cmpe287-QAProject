@@ -169,3 +169,5 @@ automation/output/test_output_updated.xlsx
 automation/output/test_output_results.xlsx
 automation/output/test_output.xlsx
 automation/output/results_visualization.pdf
+*.7z
+*.zip
