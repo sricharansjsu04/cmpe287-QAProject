@@ -18,4 +18,4 @@ def read_questions(file_path: str):
     # Update 'contextDict' with a new entry (corrected approach)
     filtered['contextDict'] = filtered['contextDict'].apply(lambda d: {**d, 'State': 'New'})
 
-    return filtered.head(200)
+    return filtered
